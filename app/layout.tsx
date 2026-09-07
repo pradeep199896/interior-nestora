@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.siteUrl),
   title: { default: seo.home.title, template: "%s | Nestora Interiors" },
   description: seo.home.description,
+  icons: {
+    icon: '/images/logo.jpeg',
+    apple: '/images/logo.jpeg',
+    shortcut: '/images/logo.jpeg',
+  },
 };
 export default function RootLayout({
   children,

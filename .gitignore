@@ -25,3 +25,4 @@ test-results/
 WhatsApp*
 artifacts/
 .DS_Store
+.vercel
