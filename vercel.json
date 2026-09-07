@@ -1,0 +1,7 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "installCommand": "npm ci",
+  "regions": ["bom1"],
+  "functions": { "app/api/contact/route.ts": { "maxDuration": 30 } }
+}

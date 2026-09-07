@@ -1,0 +1,10 @@
+WhatsApp*
+node_modules/
+.next/
+test-results/
+playwright-report/
+tests/
+artifacts/
+*.zip
+.env*
+!.env.example
