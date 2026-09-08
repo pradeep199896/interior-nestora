@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, MessageCircle, ArrowUpRight } from "lucide-react";
@@ -7,9 +8,13 @@ import { navigation, whatsappUrl } from "@/lib/config";
 export function Logo() {
   return (
     <Link href="/" className="logo" aria-label="Nestora Interiors home">
-      <span className="logo-mark">
-        N<span />
-      </span>
+      <Image
+        className="brand-emblem"
+        src="/images/nestora-mark.webp"
+        alt=""
+        width={62}
+        height={44}
+      />
       <span>
         NESTORA<small>INTERIORS</small>
       </span>
@@ -28,7 +33,11 @@ export default function Header() {
             <Link
               key={url}
               href={url}
-              aria-current={path === url ? "page" : undefined}
+              aria-current={
+                path === url || (url !== "/" && path.startsWith(`${url}/`))
+                  ? "page"
+                  : undefined
+              }
             >
               {label}
             </Link>
@@ -70,7 +79,11 @@ export default function Header() {
             <Link
               key={url}
               href={url}
-              aria-current={path === url ? "page" : undefined}
+              aria-current={
+                path === url || (url !== "/" && path.startsWith(`${url}/`))
+                  ? "page"
+                  : undefined
+              }
               onClick={() => setOpen(false)}
             >
               {label}

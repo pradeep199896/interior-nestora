@@ -9,10 +9,7 @@ const routes = [
   "/contact",
   "/privacy-policy",
   "/terms",
-  "/projects/warm-modern-living",
-  "/projects/quiet-order",
-  "/projects/considered-details",
-  "/projects/everyday-kitchen",
+  "/projects/residence-designs",
 ];
 for (const route of routes)
   test(`page ${route} renders without overflow, broken images or accessibility violations`, async ({
@@ -121,12 +118,12 @@ test("project filters, reset, gallery keyboard and swipe support", async ({
     .getByRole("button", { name: "Modular Kitchen", exact: true })
     .click();
   await expect(page.locator(".project-card")).toHaveCount(1);
-  await page.getByRole("button", { name: "Luxury", exact: true }).click();
-  await expect(page.getByText("Your space could be next.")).toBeVisible();
-  await page.getByRole("button", { name: "Reset Filters" }).click();
-  await expect(page.locator(".project-card")).toHaveCount(4);
+  await page.getByRole("button", { name: "Completed", exact: true }).click();
+  await expect(page.getByText("The next chapter, coming soon.")).toBeVisible();
+  await page.getByRole("button", { name: "View all projects" }).click();
+  await expect(page.locator(".project-card")).toHaveCount(1);
   await page
-    .getByRole("link", { name: "View Project", exact: true })
+    .getByRole("link", { name: "View Design", exact: true })
     .first()
     .click();
   const opener = page.getByRole("button", { name: /Open .* image 1/ });
@@ -137,7 +134,7 @@ test("project filters, reset, gallery keyboard and swipe support", async ({
     .analyze();
   expect(modalAudit.violations.map((v) => v.id)).toEqual([]);
   await page.keyboard.press("ArrowRight");
-  await expect(page.locator(".lb-count")).toContainText("2 / 2");
+  await expect(page.locator(".lb-count")).toContainText("2 / 8");
   if (isMobile) {
     await page.locator(".lightbox-inner").evaluate((el) => {
       el.dispatchEvent(
@@ -157,7 +154,7 @@ test("project filters, reset, gallery keyboard and swipe support", async ({
         }),
       );
     });
-    await expect(page.locator(".lb-count")).toContainText("1 / 2");
+    await expect(page.locator(".lb-count")).toContainText("3 / 8");
   }
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).not.toBeVisible();
@@ -236,7 +233,7 @@ test("metadata, sitemap, robots and missing pages", async ({
   );
   await expect(page.locator("link[rel=canonical]")).toHaveAttribute(
     "href",
-    /^http:\/\/localhost:3000\/?$/,
+    /^http:\/\/(?:localhost|127\.0\.0\.1):3000\/?$/,
   );
   expect((await request.get("/sitemap.xml")).status()).toBe(200);
   expect((await request.get("/robots.txt")).status()).toBe(200);

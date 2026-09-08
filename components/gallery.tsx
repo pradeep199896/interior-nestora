@@ -1,13 +1,14 @@
 "use client";
 import Image from "next/image";
+import type { ProjectImage } from "@/lib/projects";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 export default function Gallery({
   images,
   name,
-  sample = true,
+  sample = false,
 }: {
-  images: string[];
+  images: ProjectImage[];
   name: string;
   sample?: boolean;
 }) {
@@ -29,10 +30,10 @@ export default function Gallery({
   return (
     <>
       <div className="gallery-grid">
-        {images.map((src, i) => (
+        {images.map((item, i) => (
           <button
             className="gallery-thumb"
-            key={src}
+            key={item.src}
             aria-label={`Open ${name} image ${i + 1}`}
             onClick={() => {
               setActive(i);
@@ -41,12 +42,12 @@ export default function Gallery({
             }}
           >
             <Image
-              src={src}
-              alt={`${name}, interior reference view ${i + 1}`}
+              src={item.src}
+              alt={item.alt}
               fill
               sizes="(max-width:600px) 90vw, 50vw"
             />
-            <span>View image ↗</span>
+            <span>{item.label} ↗</span>
           </button>
         ))}
       </div>
@@ -91,8 +92,8 @@ export default function Gallery({
           </button>
           <div className="lightbox-image">
             <Image
-              src={images[active]}
-              alt={`${name}, interior reference view ${active + 1}`}
+              src={images[active].src}
+              alt={images[active].alt}
               fill
               sizes="90vw"
             />
@@ -105,7 +106,7 @@ export default function Gallery({
             <ChevronRight />
           </button>
           <p className="lb-count" aria-live="polite">
-            {active + 1} / {images.length}
+            {images[active].label} · {active + 1} / {images.length}
             {sample ? " · Sample Project" : ""}
           </p>
         </div>

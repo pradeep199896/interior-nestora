@@ -5,7 +5,7 @@ export default defineConfig({
   timeout: 45000,
   retries: 0,
   reporter: [["list"], ["html", { open: "never" }]],
-  use: { baseURL: "http://localhost:3000", trace: "retain-on-failure" },
+  use: { baseURL: process.env.TEST_BASE_URL || "http://localhost:3000", trace: "retain-on-failure" },
   projects: [
     {
       name: "desktop",
@@ -24,8 +24,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npm run start",
-    url: "http://localhost:3000",
+    command: process.env.TEST_SERVER_COMMAND || "npm run start",
+    url: process.env.TEST_BASE_URL || "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
     timeout: 60000,
   },

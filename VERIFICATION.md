@@ -59,3 +59,13 @@ After configuration, deploy, load the final public URL, check the canonical and 
 ## Content status
 
 Four projects are clearly marked samples; none claims a real client identity, address or completion. Team and testimonial placeholders are explicit. The generated hero is visibly labeled as a concept. Supplied video stills are lower-resolution references, not retouched professional portfolio photography. Image sources and the generation prompt are documented in `IMAGE-SOURCES.md`.
+
+## Projects redesign — 8 September 2026
+
+- Production build succeeded with `/projects` and `/projects/residence-designs` generated.
+- TypeScript and ESLint passed; all 9 enquiry unit tests passed.
+- Browser suite: 36 checks passed initially; 3 metadata checks failed because the existing local environment uses `127.0.0.1:3000` instead of `localhost:3000`. After accepting both loopback hostnames, those 3 checks passed on desktop, tablet and mobile.
+- Covered all current pages, image loading, horizontal overflow, axe WCAG A/AA scans, filters/reset, modal accessibility, keyboard/swipe navigation, focus return, enquiry form states and navigation links.
+- Visually inspected full-page desktop (1440px) and mobile (390px) screenshots. Adjusted the small hero heading's inherited letter spacing afterward; no behavioral changes.
+- Eight original PDF renders extracted and optimized (approximately 556 KB total). No verified completed-project assets were supplied, so the completed portfolio shows an intentional empty state. The completed video/detail branch is implemented but has no published entry and was not exercised by these browser tests.
+- Local verification used port 3100 to avoid disturbing the existing server on port 3000. No deployment or Vercel domain assignment was made.

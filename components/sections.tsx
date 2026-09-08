@@ -11,7 +11,7 @@ import {
   PanelsTopLeft,
 } from "lucide-react";
 import { faqs, processSteps, services, projects, reasons } from "@/lib/content";
-import { testimonials, company } from "@/lib/config";
+import { testimonials } from "@/lib/config";
 import { Consultation, Eyebrow, WhatsApp } from "./ui";
 export function ServicePreview() {
   const icons = [House, Utensils, Sofa, BedDouble, LayoutGrid, PanelsTopLeft];
@@ -67,45 +67,8 @@ export function ServicePreview() {
     </section>
   );
 }
-export function ProjectCard({
-  project: p,
-}: {
-  project: (typeof projects)[number];
-}) {
-  return (
-    <article className="project-card">
-      <Link className="project-image" href={`/projects/${p.slug}`}>
-        <Image
-          src={p.image}
-          alt={`${p.room} with ${p.style.toLowerCase()} interior detailing, supplied design reference`}
-          fill
-          sizes="(max-width: 700px) 100vw, 45vw"
-        />
-        {p.sample && <span className="sample-badge">Sample Project</span>}
-        <span className="image-arrow">
-          <ArrowUpRight size={22} />
-        </span>
-      </Link>
-      <div className="project-meta">
-        {p.style} <span>—</span> {p.room}
-      </div>
-      <h3>
-        <Link href={`/projects/${p.slug}`}>{p.name}</Link>
-      </h3>
-      <p>{p.description}</p>
-      <div className="project-links">
-        <Link className="text-link" href={`/projects/${p.slug}`}>
-          View Project <ArrowUpRight size={14} />
-        </Link>
-        <WhatsApp
-          message={company.projectMessage(p.name)}
-          label="Enquire About This Design"
-          className="text-link"
-        />
-      </div>
-    </article>
-  );
-}
+export { ProjectCard } from "./project-card";
+import { ProjectCard } from "./project-card";
 export function FeaturedProjects() {
   return (
     <section className="section project-section">
@@ -122,8 +85,7 @@ export function FeaturedProjects() {
           </Link>
         </div>
         <p className="sample-note">
-          Design inspiration using supplied reference imagery. Project names and
-          descriptions are samples.
+          Explore our ongoing residence designs, presented as 3D visualisations.
         </p>
         <div className="featured-grid">
           {projects.slice(0, 2).map((p) => (

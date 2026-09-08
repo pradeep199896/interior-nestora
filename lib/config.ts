@@ -46,7 +46,7 @@ export const seo = {
   projects: {
     title: "Interior Design Inspiration & Sample Projects",
     description:
-      "Explore contemporary, minimal and warm interior design ideas for your Hyderabad home. View sample spaces and discuss your own design.",
+      "Explore ongoing 3D designs and completed interior project stories. Thoughtful spaces by Nestora Interiors.",
   },
   about: {
     title: "About Nestora Interiors",
