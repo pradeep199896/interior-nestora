@@ -1,4 +1,6 @@
+# Production uses optimized public assets, not original source attachments.
 WhatsApp*
+Interior_3D_Designs.pdf
 node_modules/
 .next/
 test-results/
